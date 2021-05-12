@@ -21,3 +21,17 @@ specnumber(comm)#species number
 comm[which(comm[,1] > 8), ] #le specie presenti nel first plot (?)
 hist(specnumber(comm)) #histogramm: the most frequent richness is between 5 and 10
 hist(specnumber(comm), xlab="Species richness", main=NULL)
+colSums(comm > 0) #frequency(?)
+?specnumber #to ask info about the function
+specnumber(comm, MARGIN = 2) 
+hist(specnumber(comm, MARGIN = 2)) #few species with high freq. most of the species are rare!
+head(sort(specnumber(comm, MARGIN = 2), decreasing=T)) #the 6 most frequent species in the dataset
+sum(specnumber(comm, MARGIN = 2) == 1) #number of species occurning only once
+which(specnumber(comm, MARGIN = 2) == 1) #list of the species occuring only once
+comm_pa <- decostand(comm, method ="pa") #pa sta per presence/absence, pass from aboundance to p/a
+comm_pa[1:5, 1:6]
+groups <- c(rep(1,10), rep(2, 9)) #repete 1 ten times e 2 nine times
+specnumber(comm, groups = groups) #divido il dataset in due gruppi (non ho capito con quale criterio)
+group <- rep(1, 19)
+specnumber(comm, groups = group) # gamma diversity
+
